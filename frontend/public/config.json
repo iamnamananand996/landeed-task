@@ -1,0 +1,41 @@
+{
+  "pages": [
+    {
+      "title": "Page 1",
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "title": "Name"
+        },
+        "gender": {
+          "type": "string",
+          "title": "Gender",
+          "enum": ["M", "F", "Nonbinary"]
+        },
+        "age": {
+          "type": "integer",
+          "title": "Age"
+        }
+      },
+      "required": ["name", "gender", "age"]
+    },
+    {
+      "title": "Page 2",
+      "type": "object",
+      "properties": {
+        "profession": {
+          "type": "string",
+          "title": "Profession",
+          "enum": ["Owner", "Agent", "Buyer", "Seller"]
+        },
+        "services": {
+          "type": "string",
+          "title": "Services"
+        }
+      },
+      "required": ["profession"]
+    }
+  ],
+  "timeout": 30
+}
