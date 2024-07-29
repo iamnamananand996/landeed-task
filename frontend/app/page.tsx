@@ -5,6 +5,8 @@ import axios from 'axios';
 import { useRouter } from 'next/navigation';
 import FormPage from '../components/FormPage';
 
+const API_URL = process.env.NEXT_PUBLIC_API_URL;
+
 const Form: React.FC = () => {
   const [config, setConfig] = useState<any>(null);
   const [page, setPage] = useState(0);
@@ -12,10 +14,12 @@ const Form: React.FC = () => {
   const router = useRouter();
 
   useEffect(() => {
-    axios.get('http://localhost:3001/api/config').then(response => {
+    axios.get(`${API_URL}/api/config`).then(response => {
       setConfig(response.data);
     });
   }, []);
+
+  console.log('this page');
 
   useEffect(() => {
     if (config) {
@@ -32,8 +36,10 @@ const Form: React.FC = () => {
 
   const handleSubmit = ({ formData }: any) => {
     if (page === config.pages.length - 1) {
-      axios.post('/api/submit', formData).then(() => {
-        router.push('/success');
+      axios.post(`${API_URL}/api/submit`, formData).then(response => {
+        console.log('response', response);
+
+        // router.push('/success');
       });
     } else {
       setFormData({ ...formData, ...formData });
